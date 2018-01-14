@@ -1,5 +1,5 @@
-SERVICE_NAME      := design-brain-api
-GO_FILES          := $$(go list ./... | grep -Ev 'vendor')
+APP_NAME := design-brain-api
+GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
 .PHONY: all check circletest down fmt install run test up
@@ -25,8 +25,8 @@ circletest:
 	docker build -f Dockerfile.test -t $(SERVICE_NAME)-test .
 	docker run $(SERVICE_NAME)-test
 
-run:
-	$(BERLIOZ_NAME)
+run: install
+	$(APP_NAME)
 
 up:
 	docker-compose up -d cache

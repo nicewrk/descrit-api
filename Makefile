@@ -2,31 +2,29 @@ APP_NAME := design-brain-api
 GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
-.PHONY: all check circletest down fmt install run test up
+.PHONY: all circletest down fmt install lint migration run test up
 
 all: install
 
 install:
 	go install -v ./...
 
+run: install
+	$(APP_NAME)
+
 fmt:
 	goimports -w .
 	go fmt $(GO_FILES)
 
-check:
-	go vet $(GO_FILES)
-	golint $(GO_FILES)
-	errcheck $(GO_FILES)
+lint:
+	gometalinter --vendor ./...
 
-test: check
+test: lint
 	go test -v $(GO_FILES)
 
 circletest:
 	docker build -f Dockerfile.test -t $(SERVICE_NAME)-test .
 	docker run $(SERVICE_NAME)-test
-
-run: install
-	$(APP_NAME)
 
 up:
 	docker-compose up -d cache
@@ -34,3 +32,6 @@ up:
 
 down:
 	docker-compose down
+
+migration:
+	touch store/migrations/$$(date +%s)-$(name).up.sql store/migrations/$$(date +%s)-$(name).down.sql

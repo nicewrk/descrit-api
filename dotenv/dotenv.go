@@ -27,7 +27,7 @@ func Run(filename string) error {
 		return fmt.Errorf("error: opening file %s: %s", filename, err)
 	}
 	defer func() {
-		err := f.Close()
+		err = f.Close()
 		if err != nil {
 			log.Printf("error: closing file %s in dotenv.Run: %s", filename, err)
 		}
@@ -39,7 +39,7 @@ func Run(filename string) error {
 		line := strings.TrimSpace(scanner.Text())
 		if line != "" {
 			keyValuePair := strings.SplitN(line, "=", 2)
-			err := os.Setenv(keyValuePair[0], keyValuePair[1])
+			err = os.Setenv(keyValuePair[0], keyValuePair[1])
 			if err != nil {
 				return fmt.Errorf("error: setting env var pair k=%s, v=%s: %s", keyValuePair[0], keyValuePair[1], err)
 			}

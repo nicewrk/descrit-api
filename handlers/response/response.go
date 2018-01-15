@@ -1,4 +1,4 @@
-package healthcheck
+package response
 
 import (
 	"encoding/json"
@@ -6,24 +6,25 @@ import (
 	"net/http"
 )
 
-const (
-	optionMethods = "GET, HEAD, OPTIONS"
-)
-
 // body respresents the body of the JSON response sent to clients.
 type body struct {
 	Data   interface{} `json:"data,omitempty"`
-	Error  interface{} `json:"error,omitempty"`
+	Error  string      `json:"error,omitempty"`
 	Status int         `json:"status,omitempty"`
 }
 
-// meta represents the self-referential component of a specific portion of a JSON response.
-type meta struct {
-	Description string `json:"description,omitempty"`
+// Bad writes a bad JSON response back to the client.
+func Bad(err error, statusCode int, w http.ResponseWriter) {
+	respBody := &body{
+		Error:  err.Error(),
+		Status: statusCode,
+	}
+	log.Println(err)
+	write(respBody, w)
 }
 
-// custom writes a custom JSON response back to the client.
-func custom(data interface{}, statusCode int, w http.ResponseWriter) {
+// Custom writes a custom JSON response back to the client.
+func Custom(data interface{}, statusCode int, w http.ResponseWriter) {
 	respBody := &body{
 		Data:   data,
 		Status: statusCode,
@@ -31,13 +32,13 @@ func custom(data interface{}, statusCode int, w http.ResponseWriter) {
 	write(respBody, w)
 }
 
-// ok writes a simple 200 HEAD response back to the client.
-func ok(w http.ResponseWriter) {
+// OK writes a simple 200 HEAD response back to the client.
+func OK(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// options writes a simple 200 OPTIONS response back to the client.
-func options(allowedMethods string, w http.ResponseWriter) {
+// Options writes a simple 200 OPTIONS response back to the client.
+func Options(allowedMethods string, w http.ResponseWriter) {
 	w.Header().Set("Allow", allowedMethods)
 	w.Header().Set("Access-Control-Allow-Methods", allowedMethods)
 	w.WriteHeader(http.StatusOK)

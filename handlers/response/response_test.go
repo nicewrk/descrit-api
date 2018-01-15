@@ -1,4 +1,4 @@
-package healthcheck
+package response
 
 import (
 	"bytes"
@@ -25,17 +25,17 @@ func TestCustom(t *testing.T) {
 
 	w := httptest.NewRecorder()
 
-	custom(data, http.StatusOK, w)
+	Custom(data, http.StatusOK, w)
 
 	if !bytes.Equal(w.Body.Bytes(), b) {
 		t.Errorf("expected respBody to be %q, got: %q", b, w.Body.Bytes())
 	}
 }
 
-func TestOk(t *testing.T) {
+func TestOK(t *testing.T) {
 	w := httptest.NewRecorder()
 
-	ok(w)
+	OK(w)
 
 	if w.Code != http.StatusOK {
 		t.Errorf("expected status code to be %d, got: %d", http.StatusOK, w.Code)
@@ -45,7 +45,8 @@ func TestOk(t *testing.T) {
 func TestOptions(t *testing.T) {
 	w := httptest.NewRecorder()
 
-	options(optionMethods, w)
+	optionMethods := "GET, POST, HEAD, OPTIONS"
+	Options(optionMethods, w)
 
 	if w.Code != http.StatusOK {
 		t.Errorf("expected status code to be %d, got: %d", http.StatusOK, w.Code)

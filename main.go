@@ -5,10 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/julienschmidt/httprouter"
 	"github.com/nicewrk/design-brain-api/dotenv"
-	"github.com/nicewrk/design-brain-api/handlers/healthcheck"
+	"github.com/nicewrk/design-brain-api/handlers"
+	"github.com/nicewrk/design-brain-api/handlers/config"
 	"github.com/nicewrk/design-brain-api/newrelic"
+	"github.com/nicewrk/design-brain-api/store"
 )
 
 func init() {
@@ -25,13 +26,21 @@ func main() {
 		log.Fatalf("error: initializing New Relic: %s.", err)
 	}
 
+	// Initialize store client.
+	storeClient, err := store.NewClient()
+	if err != nil {
+		log.Fatalf("error: initializing store client: %s.", err)
+	}
+
+	// Initialize handler configuration.
+	cfg := &config.Config{
+		NewRelicApp: app,
+		StoreClient: storeClient,
+	}
+
 	// Initialize router.
-	router := httprouter.New()
+	router := handlers.NewRouter(cfg)
 
-	// /healthcheck
-	router.GET(healthcheck.Path, app.WrapHandler(healthcheck.Handle))
-	router.HEAD(healthcheck.Path, app.WrapHandler(healthcheck.Handle))
-	router.OPTIONS(healthcheck.Path, app.WrapHandler(healthcheck.Handle))
-
+	// Start server.
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

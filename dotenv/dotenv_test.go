@@ -24,7 +24,7 @@ func TestRun(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer func() {
-		err := os.Remove(tmpfilepath)
+		err = os.Remove(tmpfilepath)
 		if err != nil {
 			t.Fatalf("error: removing file %s: %s", tmpfilepath, err)
 		}

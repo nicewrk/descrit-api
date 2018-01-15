@@ -53,5 +53,5 @@ func TestWrapHandler(t *testing.T) {
 	}
 
 	// A simple test just to make sure calling doesn't blow up!
-	app.WrapHandler(func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) { return })
+	app.WrapHandler(func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {})
 }

@@ -23,4 +23,4 @@ jobs:
           command: make circletest
       - run: 
           name: Coverage
-          command: go get github.com/mattn/goveralls && make coverage
+          command: go get github.com/mattn/goveralls && make coveralls

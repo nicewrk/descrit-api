@@ -1,6 +1,6 @@
 # descrit-api
 
-[![CircleCI](https://circleci.com/gh/nicewrk/design-brain-api.svg?style=svg)](https://circleci.com/gh/nicewrk/design-brain-api)
+[![CircleCI](https://circleci.com/gh/nicewrk/design-brain-api.svg?style=shield)](https://circleci.com/gh/nicewrk/design-brain-api)
 
 ## Development
 

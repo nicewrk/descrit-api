@@ -31,7 +31,7 @@ coverage:
 	go tool cover -func=coverage.out
 
 coveralls: coverage
-	goveralls -coverprofile=coverage.out -service=circle-ci -repotoken $COVERALLS_TOKEN
+	goveralls -coverprofile=coverage.out -service=circle-ci -repotoken $(COVERALLS_TOKEN)
 
 up:
 	docker-compose up -d db

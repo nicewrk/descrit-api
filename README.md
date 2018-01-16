@@ -1,5 +1,7 @@
 # descrit-api
 
+[![CircleCI](https://circleci.com/gh/nicewrk/design-brain-api.svg?style=svg)](https://circleci.com/gh/nicewrk/design-brain-api)
+
 ## Development
 
 ### Docker

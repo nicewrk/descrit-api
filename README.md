@@ -48,7 +48,7 @@ go test -v ./store -run TestConnURI
 ```
 
 #### Coverage
-
+Check for race conditions:
 `go test -race -covermode=atomic -coverprofile=$TMP_OUTFILE $package`
 
 #### Idiomatic Go and Development Tools

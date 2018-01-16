@@ -17,7 +17,7 @@ fmt:
 	go fmt $(GO_FILES)
 
 check:
-	gometalinter --vendor ./...
+	gometalinter --vendor --exclude=/go/src/ ./...
 
 test: check
 	go test -v $(GO_FILES)

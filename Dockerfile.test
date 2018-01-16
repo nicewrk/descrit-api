@@ -3,12 +3,11 @@ FROM golang:alpine
 MAINTAINER Austin J. Alexander <austinjalexander@nicewrk.com>
 
 RUN apk add --update --no-cache make git
+RUN go get -u github.com/alecthomas/gometalinter
+RUN gometalinter --install
 
 WORKDIR /go/src/github.com/nicewrk/design-brain-api
 COPY . .
-
-RUN go get -u github.com/alecthomas/gometalinter
-RUN gometalinter --install
 
 RUN make
 

@@ -48,3 +48,11 @@ go test -v ./store -run TestConnURI
 ```
 
 #### Coverage
+
+#### Idiomatic Go and Development Tools
+Many editors now offer support to make development in Golang easier (e.g., [using `goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)).
+
+In lieu of having such a local configuration, please feel free to use `make check` and `make fmt`.
+
+#### Circle CI
+When making modifications to Circle CI configuration, be sure to [validate your YAML](https://codebeautify.org/yaml-validator) and otherwise [validate your configuration](https://circleci.com/docs/2.0/local-jobs/).

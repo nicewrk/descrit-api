@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# generates test-coverage profile for all packages.
+# Generates a  single test-coverage profile for all packages.
 OUTFILE=coverage.out
 rm -f $OUTFILE
 touch $OUTFILE

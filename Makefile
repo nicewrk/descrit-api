@@ -2,7 +2,7 @@ APP_NAME := design-brain-api
 GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
-.PHONY: all circletest down fmt install lint migration run test up
+.PHONY: all circletest coverage down fmt install check migration run test up
 
 all: install
 
@@ -16,18 +16,22 @@ fmt:
 	goimports -w .
 	go fmt $(GO_FILES)
 
-lint:
+check:
 	gometalinter --vendor ./...
 
-test: lint
+test: check
 	go test -v $(GO_FILES)
 
 circletest:
 	docker build -f Dockerfile.test -t $(SERVICE_NAME)-test .
 	docker run $(SERVICE_NAME)-test
 
+coverage:
+	./coverage.sh
+	go tool cover -func=coverage.out
+
 up:
-	docker-compose up -d cache
+	docker-compose up -d db
 	docker-compose up -d --build api
 
 down:

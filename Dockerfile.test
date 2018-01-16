@@ -7,6 +7,9 @@ RUN apk add --update --no-cache build-base
 WORKDIR /go/src/github.com/nicewrk/design-brain-api
 COPY . .
 
+RUN go get -u github.com/alecthomas/gometalinter
+RUN gometalinter --install
+
 RUN make
 
 CMD ["make", "test"]

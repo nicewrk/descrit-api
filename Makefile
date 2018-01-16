@@ -2,7 +2,7 @@ SERVICE_NAME := design-brain-api
 GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
-.PHONY: all circletest coverage down fmt install check migration run test up
+.PHONY: all circletest check coverage down fmt install migration run test up
 
 all: install
 

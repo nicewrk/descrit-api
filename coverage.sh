@@ -11,7 +11,7 @@ for package in $(go list ./... | grep -Ev 'vendor'); do
     TMP_OUTFILE=${parts[${#parts[@]}-1]}.out
     touch $TMP_OUTFILE
 
-    go test -race -covermode=atomic -coverprofile=$TMP_OUTFILE $package
+    go test -covermode=count -coverprofile=$TMP_OUTFILE $package
     if [ ! -s $OUTFILE ]; then
         cat $TMP_OUTFILE >> $OUTFILE
     else

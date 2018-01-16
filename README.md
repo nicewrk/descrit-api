@@ -49,6 +49,8 @@ go test -v ./store -run TestConnURI
 
 #### Coverage
 
+`go test -race -covermode=atomic -coverprofile=$TMP_OUTFILE $package`
+
 #### Idiomatic Go and Development Tools
 Many editors now offer support to make development in Golang easier (e.g., [using `goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)).
 

@@ -1,4 +1,4 @@
-APP_NAME := design-brain-api
+SERVICE_NAME := design-brain-api
 GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
@@ -10,7 +10,7 @@ install:
 	go install -v ./...
 
 run: install
-	$(APP_NAME)
+	$(SERVICE_NAME)
 
 fmt:
 	goimports -w .

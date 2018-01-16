@@ -3,8 +3,6 @@
 ## Development
 
 ### Docker
-`make up`
-
 `.env`:
 ```shell
 DB_HOST=designbrainapi_db_1
@@ -14,6 +12,12 @@ DB_PORT=5432
 DB_USER=postgres
 ```
 
+Run:
+```shell
+make up
+```
+
+Remove containers/images:
 ```shell
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)

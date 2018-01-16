@@ -2,7 +2,7 @@ SERVICE_NAME := design-brain-api
 GO_FILES := $$(go list ./... | grep -Ev 'vendor')
 export
 
-.PHONY: all circletest check coverage down fmt install migration run test up
+.PHONY: all circletest check coverage coveralls down fmt install migration run test up
 
 all: install
 
@@ -29,6 +29,9 @@ circletest:
 coverage:
 	./coverage.sh
 	go tool cover -func=coverage.out
+
+coveralls: coverage
+	goveralls -coverprofile=coverage.out -service=circle-ci -repotoken $COVERALLS_TOKEN
 
 up:
 	docker-compose up -d db

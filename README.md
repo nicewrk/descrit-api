@@ -1,6 +1,6 @@
 # descrit-api
 
-[![CircleCI](https://circleci.com/gh/nicewrk/design-brain-api.svg?style=shield)](https://circleci.com/gh/nicewrk/design-brain-api)
+[![CircleCI](https://circleci.com/gh/nicewrk/design-brain-api.svg?style=shield)](https://circleci.com/gh/nicewrk/design-brain-api) [![Coverage Status](https://coveralls.io/repos/github/nicewrk/design-brain-api/badge.svg?branch=master)](https://coveralls.io/github/nicewrk/design-brain-api?branch=master)
 
 ## Development
 

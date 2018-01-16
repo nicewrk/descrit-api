@@ -1,7 +1,7 @@
 version: 2
 
 default: &default
-  working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+  working_directory: /go/src/github.com/nicewrk/design-brain-api
   docker:
     - image: golang:alpine
 

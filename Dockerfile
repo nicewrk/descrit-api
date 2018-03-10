@@ -1,6 +1,6 @@
 FROM golang:alpine
 
-MAINTAINER Austin J. Alexander <austinjalexander@nicewrk.com>
+LABEL maintainer=austinjalexander@nicewrk.com
 
 RUN apk add --update --no-cache build-base
 
